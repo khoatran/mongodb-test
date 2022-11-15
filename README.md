@@ -1,9 +1,11 @@
-# Setup with docker
+## Setup 
+
+### Setup with docker
 ```
 docker run --name mongodb -d -p 27017:27017 -v <local_directory_to_store_data_of_the_test> mongo
 ```
 
-### Generate the database
+### Generate the database in local
 
 ```
 ./mgodatagen -f config.json
@@ -11,15 +13,15 @@ docker run --name mongodb -d -p 27017:27017 -v <local_directory_to_store_data_of
 
 You can check out the config.json file to see how the data is generated and values of each field
 
-# Testing the MongoDB indexing
+## Testing the MongoDB indexing
 
-# Hypothesis 1 - if the cardinality of values on the index field is a few, indexing doesn't work so well
+### Hypothesis 1 - if the cardinality of values on the index field is a few, indexing doesn't work so well
 
-## How to test?
+#### How to test?
 
 Run this query without index and with index on the workingStatus
 
-### Without indexing
+##### Without indexing
 ```
 db.person_large_data.find({"workingStatus": "No"})
    .explain("executionStats")
@@ -29,7 +31,7 @@ db.person_large_data.find({"workingStatus": "No"})
 The execution time is about 2100 - 3200 ms
 
 
-#### With indexing
+##### With indexing
 ```
 db.person_large_data.createIndex( { workingStatus: 1 });
 
@@ -40,9 +42,9 @@ db.person_large_data.find({"workingStatus": "No"})
 
 The execution time is still around 2100 - 3200 ms
 
-# Hypothesis 2 - the best performance index selector uses the cardinality of the values of the index field to decide the best one
+### Hypothesis 2 - the plan selector uses the cardinality of the values of the index field to decide the best one
 
-### Index these fields first
+#### Index these fields first
 
 ```
 db.person_large_data.createIndex( { workingStatus: 1 });
@@ -51,7 +53,7 @@ db.person_large_data.createIndex( { location: 1 });
 
 ```
 
-### Run below queries
+##### Run below queries
 
 ```
 db.person_large_data.find({"$and": [
