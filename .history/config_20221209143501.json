@@ -1,7 +1,7 @@
 [
   {
     "database": "demo",
-    "collection": "person",
+    "collection": "person_large_data",
     "count": 100,
     "content": {
       "_id": {

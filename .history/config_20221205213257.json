@@ -1,8 +1,8 @@
 [
   {
-    "database": "demo",
-    "collection": "person",
-    "count": 100,
+    "database": "mongodb_test_query",
+    "collection": "person_large_data",
+    "count": 100000000,
     "content": {
       "_id": {
         "type": "reference",

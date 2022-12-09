@@ -1,7 +1,7 @@
 [
   {
-    "database": "demo",
-    "collection": "person",
+    "database": "mongodb_test_query",
+    "collection": "person_large_data",
     "count": 100,
     "content": {
       "_id": {
